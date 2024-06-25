@@ -10,21 +10,24 @@
             color: #333;
             line-height: 1.6;
             display: flex;
+            flex-direction: column; /* Change the flex direction to column for the body */
             min-height: 100vh;
             margin: 0;
             background: #f5f5f5;
         }
         .container {
             display: flex;
-            width: 100%;
-            border-bottom: 1px solid #ccc;
+            flex: 1; /* Allows the container to fill all available space after the nav */
         }
         .left, .right {
-            width: 50%;
             padding: 20px;
         }
         .left {
+            width: 30%; /* Adjust the width as needed */
             background-color: #fff;
+        }
+        .right {
+            width: 70%; /* Adjust the width as needed */
         }
         .left img {
             width: 200px;
@@ -53,12 +56,12 @@
             bottom: 0;
         }
         .nav {
+            width: 100%; /* Nav spans full width */
             display: flex;
             justify-content: center;
             padding: 10px 0;
             background-color: #fff;
             border-bottom: 1px solid #ccc;
-            margin-bottom: 20px;
         }
         .nav button {
             background: none;
@@ -80,6 +83,10 @@
     </style>
 </head>
 <body>
+    <div class="nav">
+        <button onclick="toggleContent('research')">Research</button>
+        <button onclick="toggleContent('teaching')">Teaching</button>
+    </div>
     <div class="container">
         <div class="left">
             <div class="profile">
@@ -94,10 +101,6 @@
             </div>
         </div>
         <div class="right">
-            <div class="nav">
-                <button onclick="toggleContent('research')">Research</button>
-                <button onclick="toggleContent('teaching')">Teaching</button>
-            </div>
             <div id="research" class="content">
                 <h3>Research</h3>
                 <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology. My research is motivated by a desire to understand how people align themselves with others, through vertical differences (i.e., hierarchy) or shared values (i.e., social identity).</p>
