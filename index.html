@@ -10,8 +10,11 @@
             font-family: Arial, sans-serif;
             color: #333;
             line-height: 1.6;
+            display: flex;
+            flex-wrap: wrap;
         }
         header {
+            width: 100%;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -36,32 +39,38 @@
             text-decoration: none;
             color: #333;
         }
-        #about {
-            display: flex;
-            align-items: center;
-            flex-direction: column;
-            padding: 40px 20px;
+        .left, .right {
+            padding: 20px;
+        }
+        .left {
+            width: 35%;
             background-color: #f1f1f1;
             text-align: center;
         }
-        #about img {
+        .left img {
             width: 200px;
             height: 200px;
             object-fit: cover;
             border-radius: 50%;
             margin-bottom: 20px;
         }
-        #about h2 {
+        .left h2 {
             font-size: 36px;
             margin: 10px 0;
         }
-        #about p.email {
+        .left p.email {
             font-size: 18px;
             margin: 10px 0;
             color: #555;
         }
+        .left button a {
+            text-decoration: none;
+            color: #333;
+        }
+        .right {
+            width: 65%;
+        }
         section {
-            padding: 20px;
             margin: 20px 0;
         }
         h2 {
@@ -70,14 +79,11 @@
             padding-bottom: 5px;
         }
         footer {
+            width: 100%;
             text-align: center;
             padding: 10px 0;
             background-color: #f8f8f8;
             border-top: 1px solid #e7e7e7;
-        }
-        button a {
-            text-decoration: none;
-            color: #333;
         }
     </style>
 </head>
@@ -94,7 +100,7 @@
         </nav>
     </header>
 
-    <section id="about">
+    <div class="left">
         <img src="path/to/your/image.jpg" alt="Yufei Zhong">
         <h2>Yufei Zhong</h2>
         <p class="email"><a href="mailto:yufei.zhong@scheller.gatech.edu">yufei.zhong@scheller.gatech.edu</a></p>
@@ -102,28 +108,26 @@
         <p><strong>About</strong></p>
         <p>I am a PhD Candidate in Organizational Behavior at Scheller College of Business, Georgia Institute of Technology. I received my Bachelor's degree in Psychology from the Pennsylvania State University.</p>
         <button><a href="path/to/your/cv.pdf" target="_blank">Curriculum Vitae</a></button>
-    </section>
+    </div>
 
-    <section id="research">
-        <h2>Research</h2>
-        <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology.</p>
-        <h3>Research</h3>
-        <p>My research is motivated by a desire to understand how people align themselves with others, whether through vertical differences (i.e., hierarchy) or shared values (i.e., social identity). I have published my work in Organization Science and have been invited to revise for the Journal of Applied Psychology. In my research, I utilize experimental designs, longitudinal surveys, archival data, multi-level modeling, and meta-analytic procedures.</p>
-        <p>In my dissertation, I examine the moderating effect of team status differentiation on how teams respond to failure. While past research provides little insights into how teams respond to failure, I propose that failed teams may add higher-status new members to improve undesirable performance. However, not every failed team will do so because these new members may impose threats to incumbent members' status positions, creating a tradeoff between collective (i.e., improving team performance) and individual (i.e., protecting individual's own).</p>
-    </section>
+    <div class="right">
+        <section id="research">
+            <h2>Research</h2>
+            <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology.</p>
+            <h3>Research</h3>
+            <p>My research is motivated by a desire to understand how people align themselves with others, whether through vertical differences (i.e., hierarchy) or shared values (i.e., social identity). I have published my work in Organization Science and have been invited to revise for the Journal of Applied Psychology. In my research, I utilize experimental designs, longitudinal surveys, archival data, multi-level modeling, and meta-analytic procedures.</p>
+            <p>In my dissertation, I examine the moderating effect of team status differentiation on how teams respond to failure. While past research provides little insights into how teams respond to failure, I propose that failed teams may add higher-status new members to improve undesirable performance. However, not every failed team will do so because these new members may impose threats to incumbent members' status positions, creating a tradeoff between collective (i.e., improving team performance) and individual (i.e., protecting individual's own).</p>
+        </section>
 
-    <section id="cv">
-        <h2>Curriculum Vitae</h2>
-        <p><a href="path/to/your/cv.pdf" target="_blank">Download CV</a></p>
-    </section>
-
-    <section id="teaching">
-        <h2>Teaching</h2>
-        <p>Details about teaching experience and courses taught.</p>
-    </section>
+        <section id="teaching">
+            <h2>Teaching</h2>
+            <p>Details about teaching experience and courses taught.</p>
+        </section>
+    </div>
 
     <footer>
         <p>&copy; 2024 Yufei Zhong. All rights reserved.</p>
     </footer>
 </body>
 </html>
+
