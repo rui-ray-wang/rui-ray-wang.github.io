@@ -11,72 +11,36 @@
             color: #333;
             line-height: 1.6;
             display: flex;
-            flex-wrap: wrap;
+            min-height: 100vh;
+            margin: 0;
         }
-        header {
+        .container {
+            display: flex;
             width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 20px;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #e7e7e7;
-        }
-        header h1 {
-            font-size: 24px;
-            margin: 0;
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-        }
-        nav li {
-            margin-left: 20px;
-        }
-        nav a {
-            text-decoration: none;
-            color: #333;
         }
         .left, .right {
+            width: 50%;
             padding: 20px;
         }
         .left {
-            width: 35%;
-            background-color: #f1f1f1;
-            text-align: center;
+            background-color: #f9f9f9;
         }
         .left img {
             width: 200px;
             height: 200px;
             object-fit: cover;
             border-radius: 50%;
-            margin-bottom: 20px;
         }
-        .left h2 {
-            font-size: 36px;
+        .profile {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+        }
+        h2, .email {
             margin: 10px 0;
         }
-        .left p.email {
-            font-size: 18px;
-            margin: 10px 0;
-            color: #555;
-        }
-        .left button a {
-            text-decoration: none;
-            color: #333;
-        }
-        .right {
-            width: 65%;
-        }
-        section {
-            margin: 20px 0;
-        }
-        h2 {
-            margin-top: 0;
-            border-bottom: 2px solid #ddd;
-            padding-bottom: 5px;
+        p {
+            text-align: justify;
         }
         footer {
             width: 100%;
@@ -84,50 +48,40 @@
             padding: 10px 0;
             background-color: #f8f8f8;
             border-top: 1px solid #e7e7e7;
+            position: absolute;
+            bottom: 0;
         }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Rui Wang</h1>
-        <nav>
-            <ul>
-                <li><a href="#cv">CV</a></li>
-                <li><a href="#research">Research</a></li>
-                <li><a href="#teaching">Teaching</a></li>
-                <li><a href="#about">About Me</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <div class="left">
-        <img src="images/Rui Wang_440x500.jpg" alt="Rui Wang">
-        <h2>Rui Wang</h2>
-        <p class="email"><a href="mailto:rui_w@gwu.edu">rui_w@gwu.edu</a></p>
-        <p>I am a PhD Candidate in Organizational Behavior at Georgia Institute of Technology.</p>
-        <p><strong>About</strong></p>
-        <p>I am a PhD Candidate in Organizational Behavior at Scheller College of Business, Georgia Institute of Technology. I received my Bachelor's degree in Psychology from the Pennsylvania State University.</p>
-        <button><a href="path/to/your/cv.pdf" target="_blank">Curriculum Vitae</a></button>
+    <div class="container">
+        <div class="left">
+            <div class="profile">
+                <img src="path/to/your/image.jpg" alt="Rui Wang">
+                <h2>Rui Wang</h2>
+                <p class="email">rui_w@gwu.edu</p>
+            </div>
+            <div>
+                <h3>About</h3>
+                <p>I am a PhD Candidate in Organizational Behavior at Scheller College of Business, Georgia Institute of Technology. I received my Bachelor’s degree in Psychology from the Pennsylvania State University.</p>
+                <button><a href="path/to/your/cv.pdf" target="_blank">Curriculum Vitae</a></button>
+            </div>
+        </div>
+        <div class="right">
+            <div>
+                <h3>Research</h3>
+                <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology. My research is motivated by a desire to understand how people align themselves with others, through vertical differences (i.e., hierarchy) or shared values (i.e., social identity).</p>
+            </div>
+            <div>
+                <h3>Teaching</h3>
+                <p>Details about teaching experience and courses taught will be here.</p>
+            </div>
+        </div>
     </div>
-
-    <div class="right">
-        <section id="research">
-            <h2>Research</h2>
-            <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology.</p>
-            <h3>Research</h3>
-            <p>My research is motivated by a desire to understand how people align themselves with others, whether through vertical differences (i.e., hierarchy) or shared values (i.e., social identity). I have published my work in Organization Science and have been invited to revise for the Journal of Applied Psychology. In my research, I utilize experimental designs, longitudinal surveys, archival data, multi-level modeling, and meta-analytic procedures.</p>
-            <p>In my dissertation, I examine the moderating effect of team status differentiation on how teams respond to failure. While past research provides little insights into how teams respond to failure, I propose that failed teams may add higher-status new members to improve undesirable performance. However, not every failed team will do so because these new members may impose threats to incumbent members' status positions, creating a tradeoff between collective (i.e., improving team performance) and individual (i.e., protecting individual's own).</p>
-        </section>
-
-        <section id="teaching">
-            <h2>Teaching</h2>
-            <p>Details about teaching experience and courses taught.</p>
-        </section>
-    </div>
-
     <footer>
         <p>&copy; 2024 Rui Wang. All rights reserved.</p>
     </footer>
 </body>
 </html>
+
 
