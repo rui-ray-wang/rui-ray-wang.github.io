@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rui Wang - Personal Site</title>
-    <link rel="stylesheet" href="styles.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,6 +50,14 @@
             position: absolute;
             bottom: 0;
         }
+        .nav {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+        .content {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -68,11 +75,15 @@
             </div>
         </div>
         <div class="right">
-            <div>
+            <div class="nav">
+                <button onclick="showContent('research')">Research</button>
+                <button onclick="showContent('teaching')">Teaching</button>
+            </div>
+            <div id="research" class="content">
                 <h3>Research</h3>
                 <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology. My research is motivated by a desire to understand how people align themselves with others, through vertical differences (i.e., hierarchy) or shared values (i.e., social identity).</p>
             </div>
-            <div>
+            <div id="teaching" class="content">
                 <h3>Teaching</h3>
                 <p>Details about teaching experience and courses taught will be here.</p>
             </div>
@@ -81,6 +92,15 @@
     <footer>
         <p>&copy; 2024 Rui Wang. All rights reserved.</p>
     </footer>
+    <script>
+        function showContent(section) {
+            var contents = document.getElementsByClassName('content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            document.getElementById(section).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
 
