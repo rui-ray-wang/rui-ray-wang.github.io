@@ -5,46 +5,108 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Yufei Zhong - Personal Site</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e7e7e7;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-left: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+        }
+        #about {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+        #about img {
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+        #about div {
+            max-width: 600px;
+        }
+        section {
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e7e7e7;
+        }
+    </style>
 </head>
 <body>
     <header>
         <h1>Yufei Zhong</h1>
         <nav>
             <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#about">About Me</a></li>
             </ul>
         </nav>
     </header>
 
     <section id="about">
-        <h2>About</h2>
-        <p>Welcome to my personal website. I am Yufei Zhong, a passionate software engineer and researcher.</p>
+        <img src="path/to/your/image.jpg" alt="Yufei Zhong" width="150">
+        <div>
+            <h2>Yufei Zhong</h2>
+            <p><a href="mailto:yufei.zhong@scheller.gatech.edu">yufei.zhong@scheller.gatech.edu</a></p>
+            <p>I am a PhD Candidate in Organizational Behavior at Georgia Institute of Technology.</p>
+            <p><strong>About</strong></p>
+            <p>I am a PhD Candidate in Organizational Behavior at Scheller College of Business, Georgia Institute of Technology. I received my Bachelor's degree in Psychology from the Pennsylvania State University.</p>
+            <button><a href="path/to/your/cv.pdf" target="_blank">Curriculum Vitae</a></button>
+        </div>
     </section>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <ul>
-            <li><a href="https://github.com/yufei-zhong/project1">Project 1</a> - Description of project 1.</li>
-            <li><a href="https://github.com/yufei-zhong/project2">Project 2</a> - Description of project 2.</li>
-            <!-- Add more projects as needed -->
-        </ul>
+    <section id="research">
+        <h2>Research</h2>
+        <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology.</p>
+        <h3>Research</h3>
+        <p>My research is motivated by a desire to understand how people align themselves with others, whether through vertical differences (i.e., hierarchy) or shared values (i.e., social identity). I have published my work in Organization Science and have been invited to revise for the Journal of Applied Psychology. In my research, I utilize experimental designs, longitudinal surveys, archival data, multi-level modeling, and meta-analytic procedures.</p>
+        <p>In my dissertation, I examine the moderating effect of team status differentiation on how teams respond to failure. While past research provides little insights into how teams respond to failure, I propose that failed teams may add higher-status new members to improve undesirable performance. However, not every failed team will do so because these new members may impose threats to incumbent members' status positions, creating a tradeoff between collective (i.e., improving team performance) and individual (i.e., protecting individual's own).</p>
     </section>
 
-    <section id="publications">
-        <h2>Publications</h2>
-        <ul>
-            <li><a href="https://example.com/publication1">Publication 1</a> - Details of publication 1.</li>
-            <li><a href="https://example.com/publication2">Publication 2</a> - Details of publication 2.</li>
-            <!-- Add more publications as needed -->
-        </ul>
+    <section id="cv">
+        <h2>Curriculum Vitae</h2>
+        <p><a href="path/to/your/cv.pdf" target="_blank">Download CV</a></p>
     </section>
 
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>You can reach me at <a href="mailto:yufei@example.com">yufei@example.com</a></p>
+    <section id="teaching">
+        <h2>Teaching</h2>
+        <p>Details about teaching experience and courses taught.</p>
     </section>
 
     <footer>
