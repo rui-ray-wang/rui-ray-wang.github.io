@@ -1,758 +1,129 @@
-<html lang="en"><merlin-component id="merlin-text-summarizer" class="merlin text-summarizer"></merlin-component><merlin-component id="merlin-tutorial" class="merlin-tutorial"></merlin-component><merlin-component id="merlin-context-btn" class="merlin context-btn"></merlin-component><merlin-component id="merlin-preview-link" class="merlin merlin-preview-link"></merlin-component><merlin-component id="merlin-chat" class="merlin chat"></merlin-component><head><meta charset="utf-8"><style type="text/css">:root, :host {
-    --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
-    --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
-    --fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
-    --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
-    --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
-    --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
-    --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
-  }
-  
-  svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
-    overflow: visible;
-    box-sizing: content-box;
-  }
-  
-  .svg-inline--fa {
-    display: var(--fa-display, inline-block);
-    height: 1em;
-    overflow: visible;
-    vertical-align: -0.125em;
-  }
-  .svg-inline--fa.fa-2xs {
-    vertical-align: 0.1em;
-  }
-  .svg-inline--fa.fa-xs {
-    vertical-align: 0em;
-  }
-  .svg-inline--fa.fa-sm {
-    vertical-align: -0.0714285705em;
-  }
-  .svg-inline--fa.fa-lg {
-    vertical-align: -0.2em;
-  }
-  .svg-inline--fa.fa-xl {
-    vertical-align: -0.25em;
-  }
-  .svg-inline--fa.fa-2xl {
-    vertical-align: -0.3125em;
-  }
-  .svg-inline--fa.fa-pull-left {
-    margin-right: var(--fa-pull-margin, 0.3em);
-    width: auto;
-  }
-  .svg-inline--fa.fa-pull-right {
-    margin-left: var(--fa-pull-margin, 0.3em);
-    width: auto;
-  }
-  .svg-inline--fa.fa-li {
-    width: var(--fa-li-width, 2em);
-    top: 0.25em;
-  }
-  .svg-inline--fa.fa-fw {
-    width: var(--fa-fw-width, 1.25em);
-  }
-  
-  .fa-layers svg.svg-inline--fa {
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }
-  
-  .fa-layers-counter, .fa-layers-text {
-    display: inline-block;
-    position: absolute;
-    text-align: center;
-  }
-  
-  .fa-layers {
-    display: inline-block;
-    height: 1em;
-    position: relative;
-    text-align: center;
-    vertical-align: -0.125em;
-    width: 1em;
-  }
-  .fa-layers svg.svg-inline--fa {
-    -webkit-transform-origin: center center;
-            transform-origin: center center;
-  }
-  
-  .fa-layers-text {
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%);
-    -webkit-transform-origin: center center;
-            transform-origin: center center;
-  }
-  
-  .fa-layers-counter {
-    background-color: var(--fa-counter-background-color, #ff253a);
-    border-radius: var(--fa-counter-border-radius, 1em);
-    box-sizing: border-box;
-    color: var(--fa-inverse, #fff);
-    line-height: var(--fa-counter-line-height, 1);
-    max-width: var(--fa-counter-max-width, 5em);
-    min-width: var(--fa-counter-min-width, 1.5em);
-    overflow: hidden;
-    padding: var(--fa-counter-padding, 0.25em 0.5em);
-    right: var(--fa-right, 0);
-    text-overflow: ellipsis;
-    top: var(--fa-top, 0);
-    -webkit-transform: scale(var(--fa-counter-scale, 0.25));
-            transform: scale(var(--fa-counter-scale, 0.25));
-    -webkit-transform-origin: top right;
-            transform-origin: top right;
-  }
-  
-  .fa-layers-bottom-right {
-    bottom: var(--fa-bottom, 0);
-    right: var(--fa-right, 0);
-    top: auto;
-    -webkit-transform: scale(var(--fa-layers-scale, 0.25));
-            transform: scale(var(--fa-layers-scale, 0.25));
-    -webkit-transform-origin: bottom right;
-            transform-origin: bottom right;
-  }
-  
-  .fa-layers-bottom-left {
-    bottom: var(--fa-bottom, 0);
-    left: var(--fa-left, 0);
-    right: auto;
-    top: auto;
-    -webkit-transform: scale(var(--fa-layers-scale, 0.25));
-            transform: scale(var(--fa-layers-scale, 0.25));
-    -webkit-transform-origin: bottom left;
-            transform-origin: bottom left;
-  }
-  
-  .fa-layers-top-right {
-    top: var(--fa-top, 0);
-    right: var(--fa-right, 0);
-    -webkit-transform: scale(var(--fa-layers-scale, 0.25));
-            transform: scale(var(--fa-layers-scale, 0.25));
-    -webkit-transform-origin: top right;
-            transform-origin: top right;
-  }
-  
-  .fa-layers-top-left {
-    left: var(--fa-left, 0);
-    right: auto;
-    top: var(--fa-top, 0);
-    -webkit-transform: scale(var(--fa-layers-scale, 0.25));
-            transform: scale(var(--fa-layers-scale, 0.25));
-    -webkit-transform-origin: top left;
-            transform-origin: top left;
-  }
-  
-  .fa-1x {
-    font-size: 1em;
-  }
-  
-  .fa-2x {
-    font-size: 2em;
-  }
-  
-  .fa-3x {
-    font-size: 3em;
-  }
-  
-  .fa-4x {
-    font-size: 4em;
-  }
-  
-  .fa-5x {
-    font-size: 5em;
-  }
-  
-  .fa-6x {
-    font-size: 6em;
-  }
-  
-  .fa-7x {
-    font-size: 7em;
-  }
-  
-  .fa-8x {
-    font-size: 8em;
-  }
-  
-  .fa-9x {
-    font-size: 9em;
-  }
-  
-  .fa-10x {
-    font-size: 10em;
-  }
-  
-  .fa-2xs {
-    font-size: 0.625em;
-    line-height: 0.1em;
-    vertical-align: 0.225em;
-  }
-  
-  .fa-xs {
-    font-size: 0.75em;
-    line-height: 0.0833333337em;
-    vertical-align: 0.125em;
-  }
-  
-  .fa-sm {
-    font-size: 0.875em;
-    line-height: 0.0714285718em;
-    vertical-align: 0.0535714295em;
-  }
-  
-  .fa-lg {
-    font-size: 1.25em;
-    line-height: 0.05em;
-    vertical-align: -0.075em;
-  }
-  
-  .fa-xl {
-    font-size: 1.5em;
-    line-height: 0.0416666682em;
-    vertical-align: -0.125em;
-  }
-  
-  .fa-2xl {
-    font-size: 2em;
-    line-height: 0.03125em;
-    vertical-align: -0.1875em;
-  }
-  
-  .fa-fw {
-    text-align: center;
-    width: 1.25em;
-  }
-  
-  .fa-ul {
-    list-style-type: none;
-    margin-left: var(--fa-li-margin, 2.5em);
-    padding-left: 0;
-  }
-  .fa-ul > li {
-    position: relative;
-  }
-  
-  .fa-li {
-    left: calc(var(--fa-li-width, 2em) * -1);
-    position: absolute;
-    text-align: center;
-    width: var(--fa-li-width, 2em);
-    line-height: inherit;
-  }
-  
-  .fa-border {
-    border-color: var(--fa-border-color, #eee);
-    border-radius: var(--fa-border-radius, 0.1em);
-    border-style: var(--fa-border-style, solid);
-    border-width: var(--fa-border-width, 0.08em);
-    padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
-  }
-  
-  .fa-pull-left {
-    float: left;
-    margin-right: var(--fa-pull-margin, 0.3em);
-  }
-  
-  .fa-pull-right {
-    float: right;
-    margin-left: var(--fa-pull-margin, 0.3em);
-  }
-  
-  .fa-beat {
-    -webkit-animation-name: fa-beat;
-            animation-name: fa-beat;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
-            animation-timing-function: var(--fa-animation-timing, ease-in-out);
-  }
-  
-  .fa-bounce {
-    -webkit-animation-name: fa-bounce;
-            animation-name: fa-bounce;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
-            animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
-  }
-  
-  .fa-fade {
-    -webkit-animation-name: fa-fade;
-            animation-name: fa-fade;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-            animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-  }
-  
-  .fa-beat-fade {
-    -webkit-animation-name: fa-beat-fade;
-            animation-name: fa-beat-fade;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-            animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
-  }
-  
-  .fa-flip {
-    -webkit-animation-name: fa-flip;
-            animation-name: fa-flip;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
-            animation-timing-function: var(--fa-animation-timing, ease-in-out);
-  }
-  
-  .fa-shake {
-    -webkit-animation-name: fa-shake;
-            animation-name: fa-shake;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, linear);
-            animation-timing-function: var(--fa-animation-timing, linear);
-  }
-  
-  .fa-spin {
-    -webkit-animation-name: fa-spin;
-            animation-name: fa-spin;
-    -webkit-animation-delay: var(--fa-animation-delay, 0s);
-            animation-delay: var(--fa-animation-delay, 0s);
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 2s);
-            animation-duration: var(--fa-animation-duration, 2s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, linear);
-            animation-timing-function: var(--fa-animation-timing, linear);
-  }
-  
-  .fa-spin-reverse {
-    --fa-animation-direction: reverse;
-  }
-  
-  .fa-pulse,
-  .fa-spin-pulse {
-    -webkit-animation-name: fa-spin;
-            animation-name: fa-spin;
-    -webkit-animation-direction: var(--fa-animation-direction, normal);
-            animation-direction: var(--fa-animation-direction, normal);
-    -webkit-animation-duration: var(--fa-animation-duration, 1s);
-            animation-duration: var(--fa-animation-duration, 1s);
-    -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-            animation-iteration-count: var(--fa-animation-iteration-count, infinite);
-    -webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
-            animation-timing-function: var(--fa-animation-timing, steps(8));
-  }
-  
-  @media (prefers-reduced-motion: reduce) {
-    .fa-beat,
-  .fa-bounce,
-  .fa-fade,
-  .fa-beat-fade,
-  .fa-flip,
-  .fa-pulse,
-  .fa-shake,
-  .fa-spin,
-  .fa-spin-pulse {
-      -webkit-animation-delay: -1ms;
-              animation-delay: -1ms;
-      -webkit-animation-duration: 1ms;
-              animation-duration: 1ms;
-      -webkit-animation-iteration-count: 1;
-              animation-iteration-count: 1;
-      -webkit-transition-delay: 0s;
-              transition-delay: 0s;
-      -webkit-transition-duration: 0s;
-              transition-duration: 0s;
-    }
-  }
-  @-webkit-keyframes fa-beat {
-    0%, 90% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
-    45% {
-      -webkit-transform: scale(var(--fa-beat-scale, 1.25));
-              transform: scale(var(--fa-beat-scale, 1.25));
-    }
-  }
-  @keyframes fa-beat {
-    0%, 90% {
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
-    45% {
-      -webkit-transform: scale(var(--fa-beat-scale, 1.25));
-              transform: scale(var(--fa-beat-scale, 1.25));
-    }
-  }
-  @-webkit-keyframes fa-bounce {
-    0% {
-      -webkit-transform: scale(1, 1) translateY(0);
-              transform: scale(1, 1) translateY(0);
-    }
-    10% {
-      -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-              transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-    }
-    30% {
-      -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-              transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-    }
-    50% {
-      -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-              transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-    }
-    57% {
-      -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-              transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-    }
-    64% {
-      -webkit-transform: scale(1, 1) translateY(0);
-              transform: scale(1, 1) translateY(0);
-    }
-    100% {
-      -webkit-transform: scale(1, 1) translateY(0);
-              transform: scale(1, 1) translateY(0);
-    }
-  }
-  @keyframes fa-bounce {
-    0% {
-      -webkit-transform: scale(1, 1) translateY(0);
-              transform: scale(1, 1) translateY(0);
-    }
-    10% {
-      -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-              transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
-    }
-    30% {
-      -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-              transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
-    }
-    50% {
-      -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-              transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
-    }
-    57% {
-      -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-              transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
-    }
-    64% {
-      -webkit-transform: scale(1, 1) translateY(0);
-              transform: scale(1, 1) translateY(0);
-    }
-    100% {
-      -webkit-transform: scale(1, 1) translateY(0);
-              transform: scale(1, 1) translateY(0);
-    }
-  }
-  @-webkit-keyframes fa-fade {
-    50% {
-      opacity: var(--fa-fade-opacity, 0.4);
-    }
-  }
-  @keyframes fa-fade {
-    50% {
-      opacity: var(--fa-fade-opacity, 0.4);
-    }
-  }
-  @-webkit-keyframes fa-beat-fade {
-    0%, 100% {
-      opacity: var(--fa-beat-fade-opacity, 0.4);
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
-              transform: scale(var(--fa-beat-fade-scale, 1.125));
-    }
-  }
-  @keyframes fa-beat-fade {
-    0%, 100% {
-      opacity: var(--fa-beat-fade-opacity, 0.4);
-      -webkit-transform: scale(1);
-              transform: scale(1);
-    }
-    50% {
-      opacity: 1;
-      -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
-              transform: scale(var(--fa-beat-fade-scale, 1.125));
-    }
-  }
-  @-webkit-keyframes fa-flip {
-    50% {
-      -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-              transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-    }
-  }
-  @keyframes fa-flip {
-    50% {
-      -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-              transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
-    }
-  }
-  @-webkit-keyframes fa-shake {
-    0% {
-      -webkit-transform: rotate(-15deg);
-              transform: rotate(-15deg);
-    }
-    4% {
-      -webkit-transform: rotate(15deg);
-              transform: rotate(15deg);
-    }
-    8%, 24% {
-      -webkit-transform: rotate(-18deg);
-              transform: rotate(-18deg);
-    }
-    12%, 28% {
-      -webkit-transform: rotate(18deg);
-              transform: rotate(18deg);
-    }
-    16% {
-      -webkit-transform: rotate(-22deg);
-              transform: rotate(-22deg);
-    }
-    20% {
-      -webkit-transform: rotate(22deg);
-              transform: rotate(22deg);
-    }
-    32% {
-      -webkit-transform: rotate(-12deg);
-              transform: rotate(-12deg);
-    }
-    36% {
-      -webkit-transform: rotate(12deg);
-              transform: rotate(12deg);
-    }
-    40%, 100% {
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
-    }
-  }
-  @keyframes fa-shake {
-    0% {
-      -webkit-transform: rotate(-15deg);
-              transform: rotate(-15deg);
-    }
-    4% {
-      -webkit-transform: rotate(15deg);
-              transform: rotate(15deg);
-    }
-    8%, 24% {
-      -webkit-transform: rotate(-18deg);
-              transform: rotate(-18deg);
-    }
-    12%, 28% {
-      -webkit-transform: rotate(18deg);
-              transform: rotate(18deg);
-    }
-    16% {
-      -webkit-transform: rotate(-22deg);
-              transform: rotate(-22deg);
-    }
-    20% {
-      -webkit-transform: rotate(22deg);
-              transform: rotate(22deg);
-    }
-    32% {
-      -webkit-transform: rotate(-12deg);
-              transform: rotate(-12deg);
-    }
-    36% {
-      -webkit-transform: rotate(12deg);
-              transform: rotate(12deg);
-    }
-    40%, 100% {
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
-    }
-  }
-  @-webkit-keyframes fa-spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-              transform: rotate(360deg);
-    }
-  }
-  @keyframes fa-spin {
-    0% {
-      -webkit-transform: rotate(0deg);
-              transform: rotate(0deg);
-    }
-    100% {
-      -webkit-transform: rotate(360deg);
-              transform: rotate(360deg);
-    }
-  }
-  .fa-rotate-90 {
-    -webkit-transform: rotate(90deg);
-            transform: rotate(90deg);
-  }
-  
-  .fa-rotate-180 {
-    -webkit-transform: rotate(180deg);
-            transform: rotate(180deg);
-  }
-  
-  .fa-rotate-270 {
-    -webkit-transform: rotate(270deg);
-            transform: rotate(270deg);
-  }
-  
-  .fa-flip-horizontal {
-    -webkit-transform: scale(-1, 1);
-            transform: scale(-1, 1);
-  }
-  
-  .fa-flip-vertical {
-    -webkit-transform: scale(1, -1);
-            transform: scale(1, -1);
-  }
-  
-  .fa-flip-both,
-  .fa-flip-horizontal.fa-flip-vertical {
-    -webkit-transform: scale(-1, -1);
-            transform: scale(-1, -1);
-  }
-  
-  .fa-rotate-by {
-    -webkit-transform: rotate(var(--fa-rotate-angle, none));
-            transform: rotate(var(--fa-rotate-angle, none));
-  }
-  
-  .fa-stack {
-    display: inline-block;
-    vertical-align: middle;
-    height: 2em;
-    position: relative;
-    width: 2.5em;
-  }
-  
-  .fa-stack-1x,
-  .fa-stack-2x {
-    bottom: 0;
-    left: 0;
-    margin: auto;
-    position: absolute;
-    right: 0;
-    top: 0;
-    z-index: var(--fa-stack-z-index, auto);
-  }
-  
-  .svg-inline--fa.fa-stack-1x {
-    height: 1em;
-    width: 1.25em;
-  }
-  .svg-inline--fa.fa-stack-2x {
-    height: 2em;
-    width: 2.5em;
-  }
-  
-  .fa-inverse {
-    color: var(--fa-inverse, #fff);
-  }
-  
-  .sr-only,
-  .fa-sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-  
-  .sr-only-focusable:not(:focus),
-  .fa-sr-only-focusable:not(:focus) {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    white-space: nowrap;
-    border-width: 0;
-  }
-  
-  .svg-inline--fa .fa-primary {
-    fill: var(--fa-primary-color, currentColor);
-    opacity: var(--fa-primary-opacity, 1);
-  }
-  
-  .svg-inline--fa .fa-secondary {
-    fill: var(--fa-secondary-color, currentColor);
-    opacity: var(--fa-secondary-opacity, 0.4);
-  }
-  
-  .svg-inline--fa.fa-swap-opacity .fa-primary {
-    opacity: var(--fa-secondary-opacity, 0.4);
-  }
-  
-  .svg-inline--fa.fa-swap-opacity .fa-secondary {
-    opacity: var(--fa-primary-opacity, 1);
-  }
-  
-  .svg-inline--fa mask .fa-primary,
-  .svg-inline--fa mask .fa-secondary {
-    fill: black;
-  }
-  
-  .fad.fa-inverse,
-  .fa-duotone.fa-inverse {
-    color: var(--fa-inverse, #fff);
-  }</style><link rel="icon" href="/personal-site/favicon.ico"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#000000"><meta name="description" content="Yufei's personal site"><link rel="apple-touch-icon" href="/personal-site/android-chrome-192x192.png"><link rel="manifest" href="/personal-site/manifest.json"><title>About | Yufei Zhong</title><script defer="defer" src="/personal-site/static/js/main.73d2ddc8.js"></script><link href="/personal-site/static/css/main.b502485e.css" rel="stylesheet"><style type="text/css">html[dir=ltr],[data-sonner-toaster][dir=ltr]{--toast-icon-margin-start: -3px;--toast-icon-margin-end: 4px;--toast-svg-margin-start: -1px;--toast-svg-margin-end: 0px;--toast-button-margin-start: auto;--toast-button-margin-end: 0;--toast-close-button-start: 0;--toast-close-button-end: unset;--toast-close-button-transform: translate(-35%, -35%)}html[dir=rtl],[data-sonner-toaster][dir=rtl]{--toast-icon-margin-start: 4px;--toast-icon-margin-end: -3px;--toast-svg-margin-start: 0px;--toast-svg-margin-end: -1px;--toast-button-margin-start: 0;--toast-button-margin-end: auto;--toast-close-button-start: unset;--toast-close-button-end: 0;--toast-close-button-transform: translate(35%, -35%)}[data-sonner-toaster]{position:fixed;width:var(--width);font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;--gray1: hsl(0, 0%, 99%);--gray2: hsl(0, 0%, 97.3%);--gray3: hsl(0, 0%, 95.1%);--gray4: hsl(0, 0%, 93%);--gray5: hsl(0, 0%, 90.9%);--gray6: hsl(0, 0%, 88.7%);--gray7: hsl(0, 0%, 85.8%);--gray8: hsl(0, 0%, 78%);--gray9: hsl(0, 0%, 56.1%);--gray10: hsl(0, 0%, 52.3%);--gray11: hsl(0, 0%, 43.5%);--gray12: hsl(0, 0%, 9%);--border-radius: 8px;box-sizing:border-box;padding:0;margin:0;list-style:none;outline:none;z-index:999999999}[data-sonner-toaster][data-x-position=right]{right:max(var(--offset),env(safe-area-inset-right))}[data-sonner-toaster][data-x-position=left]{left:max(var(--offset),env(safe-area-inset-left))}[data-sonner-toaster][data-x-position=center]{left:50%;transform:translate(-50%)}[data-sonner-toaster][data-y-position=top]{top:max(var(--offset),env(safe-area-inset-top))}[data-sonner-toaster][data-y-position=bottom]{bottom:max(var(--offset),env(safe-area-inset-bottom))}[data-sonner-toast]{--y: translateY(100%);--lift-amount: calc(var(--lift) * var(--gap));z-index:var(--z-index);position:absolute;opacity:0;transform:var(--y);touch-action:none;will-change:transform,opacity,height;transition:transform .4s,opacity .4s,height .4s,box-shadow .2s;box-sizing:border-box;outline:none;overflow-wrap:anywhere}[data-sonner-toast][data-styled=true]{padding:16px;background:var(--normal-bg);border:1px solid var(--normal-border);color:var(--normal-text);border-radius:var(--border-radius);box-shadow:0 4px 12px #0000001a;width:var(--width);font-size:13px;display:flex;align-items:center;gap:6px}[data-sonner-toast]:focus-visible{box-shadow:0 4px 12px #0000001a,0 0 0 2px #0003}[data-sonner-toast][data-y-position=top]{top:0;--y: translateY(-100%);--lift: 1;--lift-amount: calc(1 * var(--gap))}[data-sonner-toast][data-y-position=bottom]{bottom:0;--y: translateY(100%);--lift: -1;--lift-amount: calc(var(--lift) * var(--gap))}[data-sonner-toast] [data-description]{font-weight:400;line-height:1.4;color:inherit}[data-sonner-toast] [data-title]{font-weight:500;line-height:1.5;color:inherit}[data-sonner-toast] [data-icon]{display:flex;height:16px;width:16px;position:relative;justify-content:flex-start;align-items:center;flex-shrink:0;margin-left:var(--toast-icon-margin-start);margin-right:var(--toast-icon-margin-end)}[data-sonner-toast][data-promise=true] [data-icon]>svg{opacity:0;transform:scale(.8);transform-origin:center;animation:sonner-fade-in .3s ease forwards}[data-sonner-toast] [data-icon]>*{flex-shrink:0}[data-sonner-toast] [data-icon] svg{margin-left:var(--toast-svg-margin-start);margin-right:var(--toast-svg-margin-end)}[data-sonner-toast] [data-content]{display:flex;flex-direction:column;gap:2px}[data-sonner-toast] [data-button]{border-radius:4px;padding-left:8px;padding-right:8px;height:24px;font-size:12px;color:var(--normal-bg);background:var(--normal-text);margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end);border:none;cursor:pointer;outline:none;display:flex;align-items:center;flex-shrink:0;transition:opacity .4s,box-shadow .2s}[data-sonner-toast] [data-button]:focus-visible{box-shadow:0 0 0 2px #0006}[data-sonner-toast] [data-button]:first-of-type{margin-left:var(--toast-button-margin-start);margin-right:var(--toast-button-margin-end)}[data-sonner-toast] [data-cancel]{color:var(--normal-text);background:rgba(0,0,0,.08)}[data-sonner-toast][data-theme=dark] [data-cancel]{background:rgba(255,255,255,.3)}[data-sonner-toast] [data-close-button]{position:absolute;left:var(--toast-close-button-start);right:var(--toast-close-button-end);top:0;height:20px;width:20px;display:flex;justify-content:center;align-items:center;padding:0;background:var(--gray1);color:var(--gray12);border:1px solid var(--gray4);transform:var(--toast-close-button-transform);border-radius:50%;opacity:0;cursor:pointer;z-index:1;transition:opacity .1s,background .2s,border-color .2s}[data-sonner-toast] [data-close-button]:focus-visible{box-shadow:0 4px 12px #0000001a,0 0 0 2px #0003}[data-sonner-toast] [data-disabled=true]{cursor:not-allowed}[data-sonner-toast]:hover [data-close-button]{opacity:1}[data-sonner-toast]:focus [data-close-button]{opacity:1}[data-sonner-toast]:focus-within [data-close-button]{opacity:1}[data-sonner-toast]:hover [data-close-button]:hover{background:var(--gray2);border-color:var(--gray5)}[data-sonner-toast][data-swiping=true]:before{content:"";position:absolute;left:0;right:0;height:100%}[data-sonner-toast][data-y-position=top][data-swiping=true]:before{bottom:50%;transform:scaleY(3) translateY(50%)}[data-sonner-toast][data-y-position=bottom][data-swiping=true]:before{top:50%;transform:scaleY(3) translateY(-50%)}[data-sonner-toast][data-swiping=false][data-removed=true]:before{content:"";position:absolute;inset:0;transform:scaleY(2)}[data-sonner-toast]:after{content:"";position:absolute;left:0;height:calc(var(--gap) + 1px);bottom:100%;width:100%}[data-sonner-toast][data-mounted=true]{--y: translateY(0);opacity:1}[data-sonner-toast][data-expanded=false][data-front=false]{--scale: var(--toasts-before) * .05 + 1;--y: translateY(calc(var(--lift-amount) * var(--toasts-before))) scale(calc(-1 * var(--scale)));height:var(--front-toast-height)}[data-sonner-toast]>*{transition:opacity .4s}[data-sonner-toast][data-expanded=false][data-front=false][data-styled=true]>*{opacity:0}[data-sonner-toast][data-visible=false]{opacity:0;pointer-events:none}[data-sonner-toast][data-mounted=true][data-expanded=true]{--y: translateY(calc(var(--lift) * var(--offset)));height:var(--initial-height)}[data-sonner-toast][data-removed=true][data-front=true][data-swipe-out=false]{--y: translateY(calc(var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=true]{--y: translateY(calc(var(--lift) * var(--offset) + var(--lift) * -100%));opacity:0}[data-sonner-toast][data-removed=true][data-front=false][data-swipe-out=false][data-expanded=false]{--y: translateY(40%);opacity:0;transition:transform .5s,opacity .2s}[data-sonner-toast][data-removed=true][data-front=false]:before{height:calc(var(--initial-height) + 20%)}[data-sonner-toast][data-swiping=true]{transform:var(--y) translateY(var(--swipe-amount, 0px));transition:none}[data-sonner-toast][data-swipe-out=true][data-y-position=bottom],[data-sonner-toast][data-swipe-out=true][data-y-position=top]{animation:swipe-out .2s ease-out forwards}@keyframes swipe-out{0%{transform:translateY(calc(var(--lift) * var(--offset) + var(--swipe-amount)));opacity:1}to{transform:translateY(calc(var(--lift) * var(--offset) + var(--swipe-amount) + var(--lift) * -100%));opacity:0}}@media (max-width: 600px){[data-sonner-toaster]{position:fixed;--mobile-offset: 16px;right:var(--mobile-offset);left:var(--mobile-offset);width:100%}[data-sonner-toaster] [data-sonner-toast]{left:0;right:0;width:calc(100% - 32px)}[data-sonner-toaster][data-x-position=left]{left:var(--mobile-offset)}[data-sonner-toaster][data-y-position=bottom]{bottom:20px}[data-sonner-toaster][data-y-position=top]{top:20px}[data-sonner-toaster][data-x-position=center]{left:var(--mobile-offset);right:var(--mobile-offset);transform:none}}[data-sonner-toaster][data-theme=light]{--normal-bg: #fff;--normal-border: var(--gray4);--normal-text: var(--gray12);--success-bg: hsl(143, 85%, 96%);--success-border: hsl(145, 92%, 91%);--success-text: hsl(140, 100%, 27%);--info-bg: hsl(208, 100%, 97%);--info-border: hsl(221, 91%, 91%);--info-text: hsl(210, 92%, 45%);--warning-bg: hsl(49, 100%, 97%);--warning-border: hsl(49, 91%, 91%);--warning-text: hsl(31, 92%, 45%);--error-bg: hsl(359, 100%, 97%);--error-border: hsl(359, 100%, 94%);--error-text: hsl(360, 100%, 45%)}[data-sonner-toaster][data-theme=light] [data-sonner-toast][data-invert=true]{--normal-bg: #000;--normal-border: hsl(0, 0%, 20%);--normal-text: var(--gray1)}[data-sonner-toaster][data-theme=dark] [data-sonner-toast][data-invert=true]{--normal-bg: #fff;--normal-border: var(--gray3);--normal-text: var(--gray12)}[data-sonner-toaster][data-theme=dark]{--normal-bg: #000;--normal-border: hsl(0, 0%, 20%);--normal-text: var(--gray1);--success-bg: hsl(150, 100%, 6%);--success-border: hsl(147, 100%, 12%);--success-text: hsl(150, 86%, 65%);--info-bg: hsl(215, 100%, 6%);--info-border: hsl(223, 100%, 12%);--info-text: hsl(216, 87%, 65%);--warning-bg: hsl(64, 100%, 6%);--warning-border: hsl(60, 100%, 12%);--warning-text: hsl(46, 87%, 65%);--error-bg: hsl(358, 76%, 10%);--error-border: hsl(357, 89%, 16%);--error-text: hsl(358, 100%, 81%)}[data-rich-colors=true] [data-sonner-toast][data-type=success],[data-rich-colors=true] [data-sonner-toast][data-type=success] [data-close-button]{background:var(--success-bg);border-color:var(--success-border);color:var(--success-text)}[data-rich-colors=true] [data-sonner-toast][data-type=info],[data-rich-colors=true] [data-sonner-toast][data-type=info] [data-close-button]{background:var(--info-bg);border-color:var(--info-border);color:var(--info-text)}[data-rich-colors=true] [data-sonner-toast][data-type=warning],[data-rich-colors=true] [data-sonner-toast][data-type=warning] [data-close-button]{background:var(--warning-bg);border-color:var(--warning-border);color:var(--warning-text)}[data-rich-colors=true] [data-sonner-toast][data-type=error],[data-rich-colors=true] [data-sonner-toast][data-type=error] [data-close-button]{background:var(--error-bg);border-color:var(--error-border);color:var(--error-text)}.sonner-loading-wrapper{--size: 16px;height:var(--size);width:var(--size);position:absolute;inset:0;z-index:10}.sonner-loading-wrapper[data-visible=false]{transform-origin:center;animation:sonner-fade-out .2s ease forwards}.sonner-spinner{position:relative;top:50%;left:50%;height:var(--size);width:var(--size)}.sonner-loading-bar{animation:sonner-spin 1.2s linear infinite;background:var(--gray11);border-radius:6px;height:8%;left:-10%;position:absolute;top:-3.9%;width:24%}.sonner-loading-bar:nth-child(1){animation-delay:-1.2s;transform:rotate(.0001deg) translate(146%)}.sonner-loading-bar:nth-child(2){animation-delay:-1.1s;transform:rotate(30deg) translate(146%)}.sonner-loading-bar:nth-child(3){animation-delay:-1s;transform:rotate(60deg) translate(146%)}.sonner-loading-bar:nth-child(4){animation-delay:-.9s;transform:rotate(90deg) translate(146%)}.sonner-loading-bar:nth-child(5){animation-delay:-.8s;transform:rotate(120deg) translate(146%)}.sonner-loading-bar:nth-child(6){animation-delay:-.7s;transform:rotate(150deg) translate(146%)}.sonner-loading-bar:nth-child(7){animation-delay:-.6s;transform:rotate(180deg) translate(146%)}.sonner-loading-bar:nth-child(8){animation-delay:-.5s;transform:rotate(210deg) translate(146%)}.sonner-loading-bar:nth-child(9){animation-delay:-.4s;transform:rotate(240deg) translate(146%)}.sonner-loading-bar:nth-child(10){animation-delay:-.3s;transform:rotate(270deg) translate(146%)}.sonner-loading-bar:nth-child(11){animation-delay:-.2s;transform:rotate(300deg) translate(146%)}.sonner-loading-bar:nth-child(12){animation-delay:-.1s;transform:rotate(330deg) translate(146%)}@keyframes sonner-fade-in{0%{opacity:0;transform:scale(.8)}to{opacity:1;transform:scale(1)}}@keyframes sonner-fade-out{0%{opacity:1;transform:scale(1)}to{opacity:0;transform:scale(.8)}}@keyframes sonner-spin{0%{opacity:1}to{opacity:.15}}@media (prefers-reduced-motion){[data-sonner-toast],[data-sonner-toast]>*,.sonner-loading-bar{transition:none!important;animation:none!important}}.loader{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);transform-origin:center;transition:opacity .2s,transform .2s}.loader[data-visible=false]{opacity:0;transform:scale(.8) translate(-50%,-50%)}
-  </style><meta name="description" content="About Yufei Zhong" data-rh="true"></head><body data-new-gr-c-s-check-loaded="14.1184.0" data-gr-ext-installed=""><noscript>You need to enable JavaScript to run this app.</noscript><div id="root"><div id="wrapper"><header id="header"><h1 class="index-link"><a href="/personal-site" previewlistener="true">Yufei Zhong</a></h1><nav class="links"><ul><li><a href="/personal-site/cv" previewlistener="true">CV</a></li><li><a href="/personal-site/research" previewlistener="true">Research</a></li><li><a href="/personal-site/teaching" previewlistener="true">Teaching</a></li><li><a href="/personal-site/stats" previewlistener="true">About Me</a></li></ul></nav><div class="hamburger-container"><nav class="main" id="hambuger-nav"><ul><li class="menu open-menu"><div class="menu-hover">☰</div></li></ul></nav><div><div class="bm-overlay" style="position: fixed; z-index: 1000; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.3); opacity: 0; transform: translate3d(100%, 0px, 0px); transition: opacity 0.3s ease 0s, transform 0s ease 0.3s;"></div><div><div class="bm-burger-button" style="z-index: 1000;"><button type="button" id="react-burger-menu-btn" style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; border: none; font-size: 0px; background: transparent; cursor: pointer;">Open Menu</button><span><span class="bm-burger-bars" style="position: absolute; height: 20%; left: 0px; right: 0px; top: 0%; opacity: 1;"></span><span class="bm-burger-bars" style="position: absolute; height: 20%; left: 0px; right: 0px; top: 40%; opacity: 1;"></span><span class="bm-burger-bars" style="position: absolute; height: 20%; left: 0px; right: 0px; top: 80%; opacity: 1;"></span></span></div></div><div id="" class="bm-menu-wrap" aria-hidden="true" hidden="true" style="position: fixed; right: 0px; z-index: 1100; width: 300px; height: 100%; transform: translate3d(100%, 0px, 0px); transition: all 0.5s ease 0s;"><div class="bm-menu" style="height: 100%; box-sizing: border-box; overflow: auto;"><nav class="bm-item-list" style="height: 100%;"><ul class="bm-item hamburger-ul" tabindex="-1" style="display: block;"><li><a href="/personal-site" previewlistener="true"><h3 class="index-li">Yufei Zhong</h3></a></li><li><a href="/personal-site/cv" previewlistener="true"><h3>CV</h3></a></li><li><a href="/personal-site/research" previewlistener="true"><h3>Research</h3></a></li><li><a href="/personal-site/teaching" previewlistener="true"><h3>Teaching</h3></a></li><li><a href="/personal-site/stats" previewlistener="true"><h3>About Me</h3></a></li></ul></nav></div><div><div class="bm-cross-button" style="position: absolute; width: 24px; height: 24px; right: 8px; top: 8px;"><button type="button" id="react-burger-cross-btn" tabindex="-1" style="position: absolute; left: 0px; top: 0px; z-index: 1; width: 100%; height: 100%; margin: 0px; padding: 0px; border: none; font-size: 0px; background: transparent; cursor: pointer;">Close Menu</button><span style="position: absolute; top: 6px; right: 14px;"><span class="bm-cross" style="position: absolute; width: 3px; height: 14px; transform: rotate(45deg);"></span><span class="bm-cross" style="position: absolute; width: 3px; height: 14px; transform: rotate(-45deg);"></span></span></div></div></div></div></div></header><div id="main"><article class="post markdown" id="about"><header><div class="title"><h2 data-testid="heading"><a href="/personal-site/about" previewlistener="true">Biography</a></h2></div></header><div><p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology.</p><h1 id="research">Research</h1><p>My research is motivated by a desire to understand <strong>how people align themselves with others</strong>, whether through vertical differences (i.e., <strong>hierarchy</strong>) or shared values (i.e., <strong>social identity</strong>). I have published my work in <em>Organization Science</em> and have been invited to revise for the <em>Journal of Applied Psychology</em>. In my research, I utilize experimental designs, longitudinal surveys, archival data, multi-level modeling, and meta-analytic procedures.</p><h2 id="-"> </h2><p>In my dissertation, I examine <strong>the moderating effect of team status differentiation on how teams respond to failure</strong>. While past research provides little insights into how teams respond to failure, I propose that failed teams may add higher-status new members to improve undesirable performance. However, not every failed team will do so because these new members may impose threats to incumbent members’ status positions, creating a tradeoff between collective (i.e., improving team performance) and individual (i.e., protecting individual’s own status position) interests. Building upon research on status conflict and team membership change, I argue that when teams have higher status differentiation, the effect of team failure on adding higher-status members is weaker or becomes non-significant because members in hierarchical teams are more likely to forsake collective welfare for individual welfare. In contrast, when teams have lower status differentiation, team failure is more likely to increase the likelihood of adding higher-status members, which in turn, improves team performance. To find support for my hypotheses, I analyzed an archival dataset consisting of 5,299 teams from a major social network services company.</p><h1 id="teaching">Teaching</h1><p>I have successfully taught a core Organizational Behavior course for two semesters, earning high teaching ratings (Fall 22 course rating: <strong>4.8 / 5.0</strong>, instructor rating: <strong>4.8 / 5.0</strong>; Spring 22 course rating: <strong>4.8 / 5.0</strong>, instructor rating: <strong>4.9 / 5.0</strong>) and positive student comments. I am prepared to teach OB/HR courses, including negotiation, power and politics, leadership, decision-making, diversity and inclusion, teams, and research methods and statistics.</p><h1 id="-"> </h1><p>Prior to pursuing my Ph.D., I worked as a lab manager at The Pennsylvania State University and a research assistant at Carnegie Mellon University.</p></div></article></div><section id="sidebar"><section id="intro"><a class="logo" href="/personal-site" previewlistener="true"><img src="/personal-site/me.JPG" alt=""></a><header><h2>Yufei Zhong</h2><p><a href="mailto:yufei.zhong@scheller.gatech.edu">yufei.zhong@scheller.gatech.edu</a></p></header></section><section class="blurb"><h2>About</h2><p>I am a <a href="https://www.scheller.gatech.edu/directory/phd/zhong/index.html" previewlistener="true"> PhD Candidate</a> in Organizational Behavior at Scheller College of Business, Georgia Institute of Technology. I received my Bachelor's degree in Psychology from the Pennsylvania State University.</p><ul class="actions"><li><a class="button" href="/personal-site/cv" previewlistener="true">Curriculum vitae</a></li></ul></section><section id="footer"><ul class="icons"><li><a href="https://www.linkedin.com/in/yufeizhong1" previewlistener="true"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="linkedin-in" class="svg-inline--fa fa-linkedin-in " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M100.28 448H7.4V148.9h92.88zM53.79 108.1C24.09 108.1 0 83.5 0 53.8a53.79 53.79 0 0 1 107.58 0c0 29.7-24.1 54.3-53.79 54.3zM447.9 448h-92.68V302.4c0-34.7-.7-79.2-48.29-79.2-48.29 0-55.69 37.7-55.69 76.7V448h-92.78V148.9h89.08v40.8h1.3c12.4-23.5 42.69-48.3 87.88-48.3 94 0 111.28 61.9 111.28 142.3V448z"></path></svg></a></li><li><a href="mailto:yufei.zhong@scheller.gatech.edu"><svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="envelope" class="svg-inline--fa fa-envelope " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M64 112c-8.8 0-16 7.2-16 16v22.1L220.5 291.7c20.7 17 50.4 17 71.1 0L464 150.1V128c0-8.8-7.2-16-16-16H64zM48 212.2V384c0 8.8 7.2 16 16 16H448c8.8 0 16-7.2 16-16V212.2L322 328.8c-38.4 31.5-93.7 31.5-132 0L48 212.2zM0 128C0 92.7 28.7 64 64 64H448c35.3 0 64 28.7 64 64V384c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V128z"></path></svg></a></li><li><a href="https://scholar.google.com/citations?user=5sttZ94AAAAJ&amp;hl=en" previewlistener="true"><svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="google" class="svg-inline--fa fa-google " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 488 512"><path fill="currentColor" d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path></svg></a></li></ul><p class="copyright">© Yufei Zhong</p></section></section></div></div><scribe-shadow id="crxjs-ext" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible; visibility: visible;"></scribe-shadow></body><merlin-component id="merlin-uicomponentportal" class="merlin merlin-uicomponentportal"></merlin-component><grammarly-desktop-integration data-grammarly-shadow-root="true"></grammarly-desktop-integration></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yufei Zhong - Personal Site</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e7e7e7;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-left: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #333;
+        }
+        #about {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            padding: 40px 20px;
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+        #about img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            margin-bottom: 20px;
+        }
+        #about h2 {
+            font-size: 36px;
+            margin: 10px 0;
+        }
+        #about p.email {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #555;
+        }
+        section {
+            padding: 20px;
+            margin: 20px 0;
+        }
+        h2 {
+            margin-top: 0;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 5px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e7e7e7;
+        }
+        button a {
+            text-decoration: none;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Yufei Zhong</h1>
+        <nav>
+            <ul>
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#about">About Me</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about">
+        <img src="path/to/your/image.jpg" alt="Yufei Zhong">
+        <h2>Yufei Zhong</h2>
+        <p class="email"><a href="mailto:yufei.zhong@scheller.gatech.edu">yufei.zhong@scheller.gatech.edu</a></p>
+        <p>I am a PhD Candidate in Organizational Behavior at Georgia Institute of Technology.</p>
+        <p><strong>About</strong></p>
+        <p>I am a PhD Candidate in Organizational Behavior at Scheller College of Business, Georgia Institute of Technology. I received my Bachelor's degree in Psychology from the Pennsylvania State University.</p>
+        <button><a href="path/to/your/cv.pdf" target="_blank">Curriculum Vitae</a></button>
+    </section>
+
+    <section id="research">
+        <h2>Research</h2>
+        <p>Welcome! I am a PhD Candidate in Organization Behavior at Georgia Institute of Technology.</p>
+        <h3>Research</h3>
+        <p>My research is motivated by a desire to understand how people align themselves with others, whether through vertical differences (i.e., hierarchy) or shared values (i.e., social identity). I have published my work in Organization Science and have been invited to revise for the Journal of Applied Psychology. In my research, I utilize experimental designs, longitudinal surveys, archival data, multi-level modeling, and meta-analytic procedures.</p>
+        <p>In my dissertation, I examine the moderating effect of team status differentiation on how teams respond to failure. While past research provides little insights into how teams respond to failure, I propose that failed teams may add higher-status new members to improve undesirable performance. However, not every failed team will do so because these new members may impose threats to incumbent members' status positions, creating a tradeoff between collective (i.e., improving team performance) and individual (i.e., protecting individual's own).</p>
+    </section>
+
+    <section id="cv">
+        <h2>Curriculum Vitae</h2>
+        <p><a href="path/to/your/cv.pdf" target="_blank">Download CV</a></p>
+    </section>
+
+    <section id="teaching">
+        <h2>Teaching</h2>
+        <p>Details about teaching experience and courses taught.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Yufei Zhong. All rights reserved.</p>
+    </footer>
+</body>
+</html>
