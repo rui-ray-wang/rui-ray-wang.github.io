@@ -24,6 +24,8 @@ section, summary, time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	/* font-weight: 400;
+	font-stretch: expanded; */
 	
 }
 
@@ -202,10 +204,12 @@ input, select, textarea {
 	}
 
 	p {
-		margin: 0 0 2em 0;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
-		line-height: 1.5;
+		margin: 0 0 1em 0;
+		font-family:  Helvetica, sans-serif;
+		line-height: 1.75;
 		font-size: 12pt;
+		font-weight: 500;
+		font-stretch: expanded;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -2767,11 +2771,12 @@ input, select, textarea {
 				-ms-flex-grow: 1;
 				flex-grow: 1;
 				-ms-flex: 1;
-				padding: 3.75em 3em 3.3em 3em;
+				/* padding: 3.75em 3em 3.3em 3em; */
+				padding: 3.75em 3em 1.2em 3em;
 			}
 
 				.post > header .title h2 {
-					font-weight: 900;
+					font-weight: 600;
 					font-size: 1.5em;
 				}
 
@@ -2800,7 +2805,7 @@ input, select, textarea {
 					display: block;
 					font-family: "Raleway", Helvetica, sans-serif;
 					font-size: 0.7em;
-					font-weight: 800;
+					font-weight: 600;
 					letter-spacing: 0.25em;
 					margin-top: 0.5em;
 					text-transform: uppercase;
@@ -3042,6 +3047,7 @@ input, select, textarea {
 		font-family: "Source Sans Pro", Helvetica, sans-serif;
 		font-size: 0.7em;
 		font-weight: 500;
+		font-stretch: expanded;
 		letter-spacing: 0.25em;
 		line-height: 2.5;
 		margin-top:-1em;
@@ -3143,6 +3149,7 @@ input, select, textarea {
 		top: 0;
 		width: 100%;
 		z-index: 10000;
+		/* font-weight: 900; */
 	}
 
 		#header a {
