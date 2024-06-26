@@ -188,8 +188,8 @@ input, select, textarea {
 		a:hover {
 			border-bottom-color: transparent;
 			color: #2ebaae !important;
+			/* font-weight: 900; */
 		}
-
 			a:hover:before {
 				color: #2ebaae !important;
 			}
@@ -225,6 +225,7 @@ input, select, textarea {
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 			color: inherit;
 			border-bottom: 0;
+		
 		}
 
 	h2 {
@@ -3197,6 +3198,7 @@ input, select, textarea {
 				line-height: 1;
 				margin-left: 1em;
 				padding-left: 1em;
+				
 			}
 
 				#header .links ul li:first-child {
@@ -3213,6 +3215,7 @@ input, select, textarea {
 					letter-spacing: 0.25em;
 					text-transform: uppercase;
 				}
+				
 
 		#header .main {
 			height: inherit;
