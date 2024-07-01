@@ -1893,6 +1893,8 @@ input, select, textarea {
 		height: 4.8125em;
 		letter-spacing: 0.25em;
 		line-height: 4.8125em;
+		/* width: 18em; */
+		max-width: 20em;
 		padding: 0 2.5em;
 		text-align: center;
 		text-decoration: none;
@@ -1997,7 +1999,16 @@ input, select, textarea {
 			.button:disabled:before {
 				color: rgba(160, 160, 160, 0.3) !important;
 			}
-
+	.equal-button {
+		display: inline-block;
+		text-align: center;
+		
+	}
+	
+	.equal-button a {
+		width: 90%;
+		display: block;
+	}
 /* Form */
 
 	form {
