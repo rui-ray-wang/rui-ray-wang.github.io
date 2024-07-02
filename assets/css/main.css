@@ -210,6 +210,14 @@ input, select, textarea {
 		font-size: 12pt;
 		font-weight: 500;
 		font-stretch: expanded;
+
+	}
+	/* This will specifically target the email to keep it in lowercase */
+	.email-format {
+		text-transform: none; /* Ensures the text stays in lowercase */
+		font-size: 11pt;
+		line-height: 1.75;
+		
 	}
 
 	h1, h2, h3, h4, h5, h6 {
