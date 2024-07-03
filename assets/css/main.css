@@ -218,9 +218,9 @@ input, select, textarea {
 		font-size: 11.125pt;
 		font-weight: 300;
 		line-height: 1.25em;
-		letter-spacing: 0.135em;
-		font-stretch: expanded;
-		color: #696868;	
+		letter-spacing: 0.14125em;
+		/* font-stretch: expanded; */
+		color: #5c5b5b;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1895,18 +1895,18 @@ input, select, textarea {
 		background-color: transparent;
 		border: 0;
 		box-shadow: inset 0 0 0 1px rgba(160, 160, 160, 0.3);
-		color: #3c3b3b !important;
+		color: #5c5b5b !important;
 		cursor: pointer;
 		display: inline-block;
 		font-family: "Raleway", Helvetica, sans-serif;
-		font-size: 0.6em;
+		font-size: 0.6375em;
 		font-weight: 800;
-		height: 4.8125em;
-		letter-spacing: 0.25em;
-		line-height: 4.8125em;
+		height: 4.88em;
+		letter-spacing: 0.235em;
+		line-height: 4.88em;
 		/* width: 18em; */
 		max-width: 20em;
-		padding: 0 2.5em;
+		padding: 0 2.235em;
 		text-align: center;
 		text-decoration: none;
 		text-transform: uppercase;
