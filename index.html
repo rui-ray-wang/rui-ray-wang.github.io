@@ -11,6 +11,11 @@
 		<meta name="description" content="Personal website of Rui Wang, a doctoral student in the Strategic Management and Public Policy department of the GW School of Business.">
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<style>
+			.bold {
+				font-weight: bold !important;
+			}
+		</style>
 	</head>
 	<body class="is-preload">
 		<!-- Wrapper -->
@@ -20,7 +25,7 @@
 					<header id="header">
 						<h1><a href="index.html">Rui Wang</a></h1>
 						<nav class="links">
-							<ul>
+							<ul id="navList">
 								<li><a href="cv.html">CV</a></li>
 								<li><a href="research.html">Research</a></li>
 								<li><a href="teaching.html">Teaching</a></li>
@@ -505,6 +510,19 @@ print 'It took ' + i + ' iterations to sort the deck.';</code></pre>
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					// const navList = document.getElementById("navList");
+					// const links = navList.querySelectorAll("a");
+					const links = document.querySelectorAll("h1 a, .links ul li a")
+
+					links.forEach(link => {
+						if (window.location.href.includes(link.getAttribute('href'))) {
+							link.classList.add("bold");
+						}
+					});
+				});
+			</script>
 
 	</body>
 	<!-- Google tag (gtag.js) -->

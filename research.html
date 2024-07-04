@@ -18,6 +18,9 @@
 				height: 500px; /* Adjust the height as necessary */
 				border: none; /* Optional: removes the iframe border */
 			}
+			.bold {
+				font-weight: bold !important;
+			}
 		</style>
 	</head>
 	<body class="is-preload">
@@ -29,7 +32,7 @@
 					<header id="header">
 						<h1><a href="index.html">Rui Wang</a></h1>
 						<nav class="links">
-							<ul>
+							<ul id="navList">
 								<li><a href="cv.html">CV</a></li>
 								<li><a href="research.html">Research</a></li>
 								<li><a href="teaching.html">Teaching</a></li>
@@ -205,6 +208,19 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				document.addEventListener("DOMContentLoaded", function() {
+					// const navList = document.getElementById("navList");
+					// const links = navList.querySelectorAll("a");
+					const links = document.querySelectorAll("h1 a, .links ul li a")
+
+					links.forEach(link => {
+						if (window.location.href.includes(link.getAttribute('href'))) {
+							link.classList.add("bold");
+						}
+					});
+				});
+			</script>
 
 	</body>
 	<!-- Google tag (gtag.js) -->

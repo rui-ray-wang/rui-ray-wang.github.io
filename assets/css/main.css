@@ -221,6 +221,7 @@ input, select, textarea {
 		letter-spacing: 0.14125em;
 		/* font-stretch: expanded; */
 		color: #5c5b5b;
+		/* text-align: center !important; */
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -3207,7 +3208,10 @@ input, select, textarea {
 
 			#header h1 a {
 				font-size: 0.7em;
+				font-weight: normal;
 			}
+
+		
 
 		#header .links {
 			-moz-flex: 1;
@@ -3243,6 +3247,7 @@ input, select, textarea {
 					font-weight: 400;
 					letter-spacing: 0.25em;
 					text-transform: uppercase;
+					/* font-weight: bold; */
 				}
 				
 
@@ -3517,7 +3522,9 @@ input, select, textarea {
 
 			#intro header p {
 				font-size: 0.7em;
+				text-align: center;
 			}
+		
 
 	}
 
