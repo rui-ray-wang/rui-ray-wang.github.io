@@ -6,6 +6,71 @@
 	html5up.net | @ajlkn
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
+.search-results-pane {
+    position: fixed;
+    top: 0;
+    right: -300px;
+    width: 300px;
+    height: 100%;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+}
+
+.search-results-pane.active {
+    right: 0;
+}
+
+.search-results-pane h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.search-result-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.search-result-item h4 {
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+.search-result-item p {
+		/* font-family: "Raleway", Helvetica, sans-serif; */
+		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-size: 0.7em;
+		font-weight: 500;
+		font-stretch: expanded;
+		letter-spacing: 0.21em;
+		line-height: 1.5;
+		margin-top:-1em;
+		text-transform: none;
+		transform: scaleX(1.15);
+		text-align: left;
+		margin-left: 0em;
+    	color: #333;
+}
+mark {
+    background-color: yellow;
+    color: black;
+}
+
+
+/* You may want to adjust these styles to better fit your overall design */
+.search-result-item {
+    margin-bottom: 15px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 4px;
+    border: 1px solid #e0e0e0;
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
